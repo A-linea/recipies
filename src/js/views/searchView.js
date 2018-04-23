@@ -19,7 +19,7 @@ export const activeSelected = id => {
 // Pasta with tomato and spinach
 //type prev or next
 const createButton = (page, type) => ` 
-      <button class="btn-inline results__btn--${type}" data-goto = ${type === 'prev' ? page  -1 : page + 1}>
+      <button class="btn-inline results__btn--${type}" data-goto = ${type === 'prev' ? page - 1 : page + 1}>
           <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
           <svg class="search__icon">
               <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
@@ -33,7 +33,7 @@ acc: 5 + cur.length = 9 /---with / push newTitle['pasta','with']
 acc: 9 + cur.length = 15 /---tomato / push newTitle['pasta','with', 'tomato']
 acc: 15 + cur.length = 18 /---and > than limit.
 * */
-const limitRecipeTitle = (title, limit = 18) => {
+export const limitRecipeTitle = (title, limit = 17) => {
   const newTitle = [];
   if (title.length > limit) {
     title.split(' ').reduce((acc, curr) => {
@@ -90,5 +90,4 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
   recipes.slice(start, end).forEach(renderRecipe);
   //render pagination button
   renderButtons(page, recipes.length, resPerPage)
-
 };
